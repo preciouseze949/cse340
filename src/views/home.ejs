@@ -1,13 +1,53 @@
 <%- include('partials/header') %>
-    <main>
-        <h1>
-            <%= title %>
-        </h1>
-        <h1>Home</h1>
-        <h2>Welcome to the CSE 340 Service Network!</h2>
-        <p>Our mission is to promote service across the world by connecting volunteers with service opportunities in
-            their community.</p>
 
-        <img class="main-logo" src="images/cse340-service-network.png" alt="CSE 340 Service Network Logo">
+    <main class="home-page">
+
+        <section class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">MAKE A DIFFERENCE</p>
+
+                <h1>
+                    <%= title %>
+                </h1>
+
+                <h2>Welcome to the CSE 340 Service Network!</h2>
+
+                <p>
+                    Our mission is to promote service across the world by
+                    connecting volunteers with service opportunities in
+                    their community.
+                </p>
+
+                <div class="hero-links">
+                    <a class="primary-button" href="/projects">
+                        Explore Projects
+                    </a>
+
+                    <a class="secondary-button" href="/organizations">
+                        Meet Our Partners
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img class="main-logo" src="/images/cse340-service-network.png" alt="CSE 340 Service Network Logo">
+            </div>
+        </section>
+
+        <section class="home-message">
+            <h2>Service Starts With You</h2>
+
+            <p>
+                Every act of kindness matters. Discover opportunities,
+                connect with organizations, and become part of something
+                bigger through meaningful community service.
+            </p>
+
+            <a href="/categories" class="text-link">
+                Explore Service Categories →
+            </a>
+        </section>
+
     </main>
+
     <%- include('partials/footer') %>

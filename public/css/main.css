@@ -1,31 +1,541 @@
-html,
-body {
-    background-color: lightblue;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
+/* ==========================================
+   CSE 340 SERVICE NETWORK
+   Main Stylesheet
+========================================== */
+
+/* 1. CSS Variables */
+
+:root {
+    --primary: #17324d;
+    --secondary: #087f8c;
+    --accent: #e6a23c;
+    --background: #f4f7fa;
+    --white: #ffffff;
+    --text: #263442;
+    --muted: #536474;
+    --border: #dce4eb;
+    --shadow: 0 5px 20px rgba(23, 50, 77, 0.08);
+}
+
+/* 2. General Styles */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    nav {
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text);
+    background-color: var(--background);
+}
 
-        li {
-            display: inline;
-            margin-right: 15px;
-        }
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+a {
+    color: var(--secondary);
+}
 
-            &:hover {
-                color: #0066cc;
-            }
-        }
+a:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.3;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--primary);
+}
+
+/* 3. Header and Navigation */
+
+.site-header {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 18px 5%;
+    box-shadow: var(--shadow);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.site-brand {
+    color: var(--white);
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.site-brand span {
+    color: var(--accent);
+}
+
+.main-nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 25px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 5px;
+    transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+    color: var(--accent);
+}
+
+/* 4. Main Content */
+
+main {
+    width: 90%;
+    max-width: 1200px;
+    min-height: 65vh;
+    margin: 0 auto;
+    padding: 45px 0;
+}
+
+h1 {
+    font-size: 2.4rem;
+}
+
+h2 {
+    font-size: 1.7rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+p {
+    margin-bottom: 18px;
+}
+
+/* 5. Homepage Hero */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 40px;
+    padding: 65px 50px;
+    background-color: var(--white);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+}
+
+.eyebrow {
+    color: var(--secondary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.hero h2 {
+    font-size: 1.6rem;
+    color: var(--secondary);
+}
+
+.hero-content>p:not(.eyebrow) {
+    color: var(--muted);
+    font-size: 1.08rem;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-logo {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 12px;
+}
+
+.hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 28px;
+}
+
+.primary-button,
+.secondary-button {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.primary-button {
+    background-color: var(--secondary);
+    color: var(--white);
+}
+
+.primary-button:hover {
+    background-color: var(--primary);
+}
+
+.secondary-button {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.secondary-button:hover {
+    background-color: var(--secondary);
+}
+
+.home-message {
+    text-align: center;
+    max-width: 800px;
+    margin: 55px auto 20px;
+    padding: 25px;
+}
+
+.home-message h2 {
+    font-size: 2rem;
+}
+
+.home-message p {
+    color: var(--muted);
+}
+
+.text-link {
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.text-link:hover {
+    text-decoration: underline;
+}
+
+/* 6. Page Introduction */
+
+.page-intro {
+    text-align: center;
+    padding: 45px 25px;
+    margin-bottom: 45px;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.page-intro h1 {
+    margin-bottom: 12px;
+}
+
+.page-intro>p:last-child {
+    max-width: 750px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 1.05rem;
+}
+
+/* 7. Organizations */
+
+.organizations-section h2,
+.projects-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.organization-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.organization-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px 22px;
+    background-color: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease;
+}
+
+.organization-card:hover {
+    transform: translateY(-5px);
+}
+
+.organization-card img {
+    width: 125px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.organization-card h3 {
+    margin-bottom: 12px;
+}
+
+.organization-card p {
+    color: var(--muted);
+    flex-grow: 1;
+}
+
+.organization-card a {
+    font-weight: 600;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.organization-card a:hover {
+    text-decoration: underline;
+}
+
+/* 8. Projects */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.project-card {
+    padding: 30px;
+    background-color: var(--white);
+    border-left: 5px solid var(--secondary);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card h3 {
+    margin-top: 15px;
+}
+
+.project-card p {
+    color: var(--muted);
+    margin-bottom: 0;
+}
+
+.project-number,
+.category-number {
+    display: inline-block;
+    color: var(--secondary);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* 9. Categories */
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.category-card {
+    padding: 32px;
+    background-color: var(--white);
+    border-top: 5px solid var(--secondary);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+}
+
+.category-card h2 {
+    margin: 12px 0;
+    font-size: 1.45rem;
+}
+
+.category-card p {
+    color: var(--muted);
+    margin-bottom: 0;
+}
+
+/* 10. Footer */
+
+.site-footer {
+    background-color: var(--primary);
+    color: var(--white);
+    text-align: center;
+    padding: 28px 15px;
+    margin-top: 35px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.site-footer p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+}
+
+/* 11. Tablet Layout */
+
+@media screen and (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr 0.7fr;
+        padding: 40px 30px;
+        gap: 25px;
+    }
+
+    .hero h1 {
+        font-size: 2.4rem;
+    }
+
+    .organization-grid,
+    .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .header-container {
+        justify-content: center;
+    }
+}
+
+/* 12. Mobile Layout */
+
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 15px;
+    }
+
+    .site-header {
+        padding: 15px 12px;
+    }
+
+    .header-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .site-brand {
+        font-size: 1.2rem;
+    }
+
+    .main-nav ul {
+        gap: 5px 15px;
+    }
+
+    .main-nav a {
+        font-size: 0.9rem;
+        padding: 6px 2px;
+    }
+
+    main {
+        width: 92%;
+        padding: 25px 0;
+    }
+
+    h1 {
+        font-size: 1.9rem;
+    }
+
+    h2 {
+        font-size: 1.45rem;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 35px 20px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero h2 {
+        font-size: 1.35rem;
+    }
+
+    .hero-links {
+        justify-content: center;
+    }
+
+    .main-logo {
+        max-width: 220px;
+    }
+
+    .home-message {
+        margin-top: 35px;
+        padding: 15px;
+    }
+
+    .page-intro {
+        padding: 30px 18px;
+        margin-bottom: 30px;
+    }
+
+    .organization-grid,
+    .project-grid,
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .organization-card,
+    .project-card,
+    .category-card {
+        padding: 25px 20px;
+    }
+
+    .site-footer {
+        padding: 22px 12px;
     }
 }

@@ -41,6 +41,12 @@ app.get('/projects', async (req, res) => {
     const title = 'Service Projects';
     res.render('projects', { title });
 });
+
+// Categories page
+app.get('/categories', async (req, res) => {
+    const title = 'Service Project Categories';
+    res.render('categories', { title });
+});
 // app.get('/', (req, res) => {
 //     res.send('Hello from Mrpee himself!');
 // });
