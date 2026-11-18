@@ -1,73 +1,63 @@
+
 <%- include('partials/header') %>
 
-    <main class="content-page">
+<main class="content-page">
 
-        <section class="page-intro">
-            <p class="eyebrow">WORKING TOGETHER</p>
+    <section class="page-intro">
+        <p class="eyebrow">WORKING TOGETHER</p>
 
-            <h1>
-                <%= title %>
-            </h1>
+        <h1><%= title %></h1>
 
-            <p>
-                Meet some of our partner organizations working to make
-                a positive difference in communities around the world.
-            </p>
-        </section>
+        <p>
+            Meet our partner organizations working to make
+            a positive difference in communities around the world.
+        </p>
+    </section>
 
-        <section class="organizations-section">
-            <h2>Our Partner Organizations</h2>
+    <section class="organizations-section">
+
+        <h2>Our Partner Organizations</h2>
+
+        <% if (organizations.length > 0) { %>
 
             <div class="organization-grid">
 
-                <article class="organization-card">
-                    <img src="/images/brightfuture-logo.png" alt="BrightFuture Builders logo" loading="lazy">
+                <% organizations.forEach((organization) => { %>
 
-                    <h3>BrightFuture Builders</h3>
+                    <article class="organization-card">
 
-                    <p>
-                        Supporting communities through meaningful
-                        development and service opportunities.
-                    </p>
+                        <img
+                            src="/images/<%= organization.logo_filename %>"
+                            alt="<%= organization.name %> logo"
+                            loading="lazy"
+                        >
 
-                    <a href="mailto:info@brightfuture.org">
-                        info@brightfuture.org
-                    </a>
-                </article>
+                        <h3>
+                            <%= organization.name %>
+                        </h3>
 
-                <article class="organization-card">
-                    <img src="/images/greenharvest-logo.png" alt="GreenHarvest Growers logo" loading="lazy">
+                        <p>
+                            <%= organization.description %>
+                        </p>
 
-                    <h3>GreenHarvest Growers</h3>
+                        <a href="mailto:<%= organization.contact_email %>">
+                            <%= organization.contact_email %>
+                        </a>
 
-                    <p>
-                        Promoting environmental sustainability,
-                        agriculture, and community development.
-                    </p>
+                    </article>
 
-                    <a href="mailto:contact@greenharvest.org">
-                        contact@greenharvest.org
-                    </a>
-                </article>
-
-                <article class="organization-card">
-                    <img src="/images/unityserve-logo.png" alt="UnityServe Volunteers logo" loading="lazy">
-
-                    <h3>UnityServe Volunteers</h3>
-
-                    <p>
-                        Connecting volunteers with meaningful
-                        opportunities to serve their communities.
-                    </p>
-
-                    <a href="mailto:hello@unityserve.org">
-                        hello@unityserve.org
-                    </a>
-                </article>
+                <% }) %>
 
             </div>
-        </section>
 
-    </main>
+        <% } else { %>
 
-    <%- include('partials/footer') %>
+            <p>No organizations are currently available.</p>
+
+        <% } %>
+
+    </section>
+
+</main>
+
+<%- include('partials/footer') %>

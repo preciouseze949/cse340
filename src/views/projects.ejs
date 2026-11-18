@@ -1,57 +1,74 @@
+
 <%- include('partials/header') %>
 
-    <main class="content-page">
+<main class="content-page">
 
-        <section class="page-intro">
-            <p class="eyebrow">GET INVOLVED</p>
+    <section class="page-intro">
+        <p class="eyebrow">GET INVOLVED</p>
 
-            <h1>
-                <%= title %>
-            </h1>
+        <h1><%= title %></h1>
 
-            <p>
-                Discover opportunities to make a positive difference
-                through volunteering and community service.
-            </p>
-        </section>
+        <p>
+            Discover opportunities to make a positive difference
+            through volunteering and community service.
+        </p>
+    </section>
 
-        <section class="projects-section">
+    <section class="projects-section">
 
-            <h2>Upcoming Service Projects</h2>
+        <h2>Available Service Projects</h2>
+
+        <% if (projects.length > 0) { %>
 
             <div class="project-grid">
 
-                <article class="project-card">
-                    <span class="project-number">01</span>
-                    <h3>Park Cleanup</h3>
+                <% projects.forEach((project) => { %>
 
-                    <p>
-                        Join us to clean up local parks and make them beautiful!
-                    </p>
-                </article>
+                    <article class="project-card">
 
-                <article class="project-card">
-                    <span class="project-number">02</span>
-                    <h3>Food Drive</h3>
+                        <h3>
+                            <%= project.title %>
+                        </h3>
 
-                    <p>
-                        Help collect and distribute food to those in need.
-                    </p>
-                </article>
+                        <p>
+                            <strong>Date:</strong>
+                            <%= new Date(
+                                project.project_date + 'T00:00:00'
+                            ).toLocaleDateString('en-GB', {
+                                day: 'numeric',
+                                month: 'long',
+                                year: 'numeric'
+                            }) %>
+                        </p>
 
-                <article class="project-card">
-                    <span class="project-number">03</span>
-                    <h3>Community Tutoring</h3>
+                        <p>
+                            <strong>Organization:</strong>
+                            <%= project.organization_name %>
+                        </p>
 
-                    <p>
-                        Volunteer to tutor students in various subjects.
-                    </p>
-                </article>
+                        <p>
+                            <strong>Location:</strong>
+                            <%= project.location %>
+                        </p>
+
+                        <p>
+                            <%= project.description %>
+                        </p>
+
+                    </article>
+
+                <% }) %>
 
             </div>
 
-        </section>
+        <% } else { %>
 
-    </main>
+            <p>No service projects are currently available.</p>
 
-    <%- include('partials/footer') %>
+        <% } %>
+
+    </section>
+
+</main>
+
+<%- include('partials/footer') %>
