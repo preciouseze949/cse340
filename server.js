@@ -4,6 +4,7 @@ import path from 'path';
 import { testConnection } from './src/models/db.js';
 import { getAllOrganizations } from './src/models/organizations.js';
 import { getAllProjects } from './src/models/projects.js';
+import { getAllCategories } from './src/models/categories.js';
 
 // Define the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -63,21 +64,36 @@ app.get('/projects', async (req, res) => {
 
 
 // Categories page
+
 app.get('/categories', async (req, res) => {
     const title = 'Service Project Categories';
-    res.render('categories', { title });
+
+    try {
+        const categories = await getAllCategories();
+
+        console.log('Categories:', categories);
+
+        res.render('categories', {
+            title,
+            categories
+        });
+    } catch (error) {
+        console.error('Error retrieving categories:', error);
+        res.status(500).send('Unable to retrieve categories.');
+    }
 });
+
 // app.get('/', (req, res) => {
 //     res.send('Hello from Mrpee himself!');
 // });
 
 app.listen(PORT, async () => {
-  try {
-    await testConnection();
-    console.log(`Server is running at http://127.0.0.1:${PORT}`);
-    console.log(`Environment: ${NODE_ENV}`);
-  } catch (error) {
-    console.error('Error connecting to the database:', error);
-  }
+    try {
+        await testConnection();
+        console.log(`Server is running at http://127.0.0.1:${PORT}`);
+        console.log(`Environment: ${NODE_ENV}`);
+    } catch (error) {
+        console.error('Error connecting to the database:', error);
+    }
 });
 

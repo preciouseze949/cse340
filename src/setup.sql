@@ -164,3 +164,80 @@ FROM (
 
 JOIN organization AS o
     ON o.name = p.organization_name;
+
+
+-- ========================================
+-- CATEGORY TABLE
+-- ========================================
+
+CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    category_name VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- ========================================
+-- PROJECT CATEGORY JUNCTION TABLE
+-- ========================================
+
+CREATE TABLE project_category (
+    project_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+
+    PRIMARY KEY (project_id, category_id),
+
+    CONSTRAINT fk_project_category_project
+        FOREIGN KEY (project_id)
+        REFERENCES service_project (project_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_project_category_category
+        FOREIGN KEY (category_id)
+        REFERENCES category (category_id)
+        ON DELETE CASCADE
+);
+
+-- ========================================
+-- INSERT SERVICE PROJECT CATEGORIES
+-- ========================================
+
+INSERT INTO category (category_name)
+VALUES
+    ('Environmental'),
+    ('Educational'),
+    ('Community Service'),
+    ('Health and Wellness');
+
+-- ========================================
+-- ASSOCIATE PROJECTS WITH CATEGORIES
+-- ========================================
+
+INSERT INTO project_category (project_id, category_id)
+SELECT
+    sp.project_id,
+    c.category_id
+FROM (
+    VALUES
+        ('Community School Renovation', 'Educational'),
+        ('Clean Water Initiative', 'Health and Wellness'),
+        ('Community Housing Support', 'Community Service'),
+        ('Public Library Improvement', 'Educational'),
+        ('Youth Skills Centre Project', 'Educational'),
+
+        ('Community Tree Planting', 'Environmental'),
+        ('Urban Vegetable Garden', 'Environmental'),
+        ('Environmental Cleanup', 'Environmental'),
+        ('Sustainable Farming Workshop', 'Environmental'),
+        ('Community Composting Programme', 'Environmental'),
+
+        ('Food Donation Drive', 'Community Service'),
+        ('Children Reading Programme', 'Educational'),
+        ('Community Health Outreach', 'Health and Wellness'),
+        ('Elderly Support Visit', 'Community Service'),
+        ('Neighbourhood Volunteer Day', 'Community Service')
+) AS assignments(project_title, category_name)
+
+INNER JOIN service_project AS sp
+    ON sp.title = assignments.project_title
+
+INNER JOIN category AS c
+    ON c.category_name = assignments.category_name;

@@ -1,68 +1,53 @@
+
 <%- include('partials/header') %>
 
-    <main class="content-page">
+<main class="content-page">
 
-        <section class="page-intro">
-            <p class="eyebrow">FIND YOUR PURPOSE</p>
+    <section class="page-intro">
+        <p class="eyebrow">FIND YOUR PURPOSE</p>
 
-            <h1>
-                <%= title %>
-            </h1>
+        <h1><%= title %></h1>
 
-            <p>
-                Explore different service categories and find meaningful
-                ways to contribute your time and skills.
-            </p>
-        </section>
+        <p>
+            Explore different service categories and find meaningful
+            ways to contribute your time and skills.
+        </p>
+    </section>
 
-        <section class="categories-section">
+    <section class="categories-section">
+
+        <h2>Available Categories</h2>
+
+        <% if (categories.length > 0) { %>
 
             <div class="category-grid">
 
-                <article class="category-card">
-                    <span class="category-number">01</span>
-                    <h2>Environmental</h2>
+                <% categories.forEach((category, index) => { %>
 
-                    <p>
-                        Participate in activities that protect the environment,
-                        preserve natural resources, and promote sustainability.
-                    </p>
-                </article>
+                    <article class="category-card">
 
-                <article class="category-card">
-                    <span class="category-number">02</span>
-                    <h2>Educational</h2>
+                        <span class="category-number">
+                            <%= String(index + 1).padStart(2, '0') %>
+                        </span>
 
-                    <p>
-                        Support learning through tutoring, mentoring,
-                        literacy programs, and educational outreach.
-                    </p>
-                </article>
+                        <h2>
+                            <%= category.category_name %>
+                        </h2>
 
-                <article class="category-card">
-                    <span class="category-number">03</span>
-                    <h2>Community Service</h2>
+                    </article>
 
-                    <p>
-                        Strengthen communities through volunteering,
-                        neighborhood improvement, and outreach programs.
-                    </p>
-                </article>
-
-                <article class="category-card">
-                    <span class="category-number">04</span>
-                    <h2>Health and Wellness</h2>
-
-                    <p>
-                        Promote healthier communities through wellness
-                        activities, health education, and support initiatives.
-                    </p>
-                </article>
+                <% }) %>
 
             </div>
 
-        </section>
+        <% } else { %>
 
-    </main>
+            <p>No categories are currently available.</p>
 
-    <%- include('partials/footer') %>
+        <% } %>
+
+    </section>
+
+</main>
+
+<%- include('partials/footer') %>
